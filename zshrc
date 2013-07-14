@@ -8,6 +8,9 @@
 ## Emacsキーバインドを使う。
 bindkey -e
 
+#keymap
+xmodmap ~/.xmodmap
+
 # ディレクトリ移動
 ## ディレクトリ名だけでcdする。
 setopt auto_cd
