@@ -1,4 +1,3 @@
-
 # -*- sh -*-
 
 ## Keybind configuration
@@ -11,6 +10,9 @@ bindkey -e
 
 #keymap
 xmodmap ~/.xmodmap
+
+#環境変数
+export LANG=ja_JP.UTF-8
 
 # ディレクトリ移動
 ## ディレクトリ名だけでcdする。
