@@ -374,6 +374,9 @@ alias mv="mv -i"
 alias pd="pushd"
 alias po="popd"
 
+# google-chromeからchromeへ変更
+# google-chromeの起動オプション
+alias chrome='google-chrome --disk-cache-dir="/ramdisk" --disk-cache-size=1 --media-cache-size=1 --disable-geolocation --enable-click-to-play --purge-memory-button --disable-background-mode'
 
 # OS 別の設定
 # updateやupgradeを1発で行う(たいへんきけん)
