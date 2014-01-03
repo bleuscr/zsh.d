@@ -14,6 +14,9 @@ xmodmap ~/.xmodmap
 #環境変数
 export LANG=ja_JP.UTF-8
 
+# zsh editor
+autoload zed
+
 # ディレクトリ移動
 ## ディレクトリ名だけでcdする。
 setopt auto_cd
@@ -26,14 +29,7 @@ cdpath=(~)
 chpwd_functions=($chpwd_functions dirs)
 
 
-# コマンド履歴検索機能
-# http://news.mynavi.jp/column/zsh/004/index.html
-# historical backward/forward search with linehead string binded to ^P/^N
-autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
+
  
 
 
@@ -91,6 +87,12 @@ bg256()
     echo -n $'\e[48;5;'$(color256 "$@")"m"
 }
 
+
+###ちょっと無効化中###
+#
+#
+#
+#
 ## プロンプトの作成
 ### ↓のようにする。
 ###   -(user@debian)-(0)-<2011/09/01 00:54>------------------------------[/home/user]-
@@ -98,10 +100,10 @@ bg256()
 
 ## バージョン管理システムの情報も表示する
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats \
-    '(%{%F{white}%K{green}%}%s%{%f%k%})-[%{%F{white}%K{blue}%}%b%{%f%k%}]'
-zstyle ':vcs_info:*' actionformats \
-    '(%{%F{white}%K{green}%}%s%{%f%k%})-[%{%F{white}%K{blue}%}%b%{%f%k%}|%{%F{white}%K{red}%}%a%{%f%k%}]'
+#zstyle ':vcs_info:*' formats \
+#    '(%{%F{white}%K{green}%}%s%{%f%k%})-[%{%F{white}%K{blue}%}%b%{%f%k%}]'
+#zstyle ':vcs_info:*' actionformats \
+#    '(%{%F{white}%K{green}%}%s%{%f%k%})-[%{%F{white}%K{blue}%}%b%{%f%k%}|%{%F{white}%K{red}%}%a%{%f%k%}]'
 
 ### プロンプトバーの左側
 ###   %{%B%}...%{%b%}: 「...」を太字にする。
@@ -123,15 +125,15 @@ zstyle ':vcs_info:*' actionformats \
 ###   %{%f%}: 文字の色を元に戻す。
 ###   %{%b%}: 太字を元に戻す。
 ###   %D{%Y/%m/%d %H:%M}: 日付。「年/月/日 時:分」というフォーマット。
-prompt_bar_left_self="(%{%B%}%n%{%b%}%{%F{cyan}%}@%{%f%}%{%B%}%m%{%b%})"
-prompt_bar_left_status="(%{%B%F{white}%(?.%K{green}.%K{red})%}%?%{%k%f%b%})"
-prompt_bar_left_date="<%{%B%}%D{%Y/%m/%d %H:%M}%{%b%}>"
-prompt_bar_left="-${prompt_bar_left_self}-${prompt_bar_left_status}-${prompt_bar_left_date}-"
+#prompt_bar_left_self="(%{%B%}%n%{%b%}%{%F{cyan}%}@%{%f%}%{%B%}%m%{%b%})"
+#prompt_bar_left_status="(%{%B%F{white}%(?.%K{green}.%K{red})%}%?%{%k%f%b%})"
+#prompt_bar_left_date="<%{%B%}%D{%Y/%m/%d %H:%M}%{%b%}>"
+#prompt_bar_left="-${prompt_bar_left_self}-${prompt_bar_left_status}-${prompt_bar_left_date}-"
 ### プロンプトバーの右側
 ###   %{%B%K{magenta}%F{white}%}...%{%f%k%b%}:
 ###       「...」を太字のマゼンタ背景の白文字にする。
 ###   %d: カレントディレクトリのフルパス（省略しない）
-prompt_bar_right="-[%{%B%K{magenta}%F{white}%}%d%{%f%k%b%}]-"
+#prompt_bar_right="-[%{%B%K{magenta}%F{white}%}%d%{%f%k%b%}]-"
 
 ### 2行目左にでるプロンプト。
 ###   %h: ヒストリ数。
@@ -139,12 +141,12 @@ prompt_bar_right="-[%{%B%K{magenta}%F{white}%}%d%{%f%k%b%}]-"
 ###     %j: 実行中のジョブ数。
 ###   %{%B%}...%{%b%}: 「...」を太字にする。
 ###   %#: 一般ユーザなら「%」、rootユーザなら「#」になる。
-prompt_left="-[%h]%(1j,(%j),)%{%B%}%#%{%b%} "
+#prompt_left="-[%h]%(1j,(%j),)%{%B%}%#%{%b%} "
 
 ## プロンプトフォーマットを展開した後の文字数を返す。
 ## 日本語未対応。
-count_prompt_characters()
-{
+#count_prompt_characters()
+#{
     # print:
     #   -P: プロンプトフォーマットを展開する。
     #   -n: 改行をつけない。
@@ -154,30 +156,30 @@ count_prompt_characters()
     #   -c: 文字数を出力する。
     # sed:
     #   -e 's/ //g': *BSDやMac OS Xのwcは数字の前に空白を出力するので削除する。
-    print -n -P -- "$1" | sed -e $'s/\e\[[0-9;]*m//g' | wc -m | sed -e 's/ //g'
-}
+#    print -n -P -- "$1" | sed -e $'s/\e\[[0-9;]*m//g' | wc -m | sed -e 's/ //g'
+#}
 
 ## プロンプトを更新する。
-update_prompt()
-{
+#update_prompt()
+#{
     # プロンプトバーの左側の文字数を数える。
     # 左側では最後に実行したコマンドの終了ステータスを使って
     # いるのでこれは一番最初に実行しなければいけない。そうし
     # ないと、最後に実行したコマンドの終了ステータスが消えて
     # しまう。
-    local bar_left_length=$(count_prompt_characters "$prompt_bar_left")
+#    local bar_left_length=$(count_prompt_characters "$prompt_bar_left")
     # プロンプトバーに使える残り文字を計算する。
     # $COLUMNSにはターミナルの横幅が入っている。
-    local bar_rest_length=$[COLUMNS - bar_left_length]
+#    local bar_rest_length=$[COLUMNS - bar_left_length]
 
-    local bar_left="$prompt_bar_left"
+#    local bar_left="$prompt_bar_left"
     # パスに展開される「%d」を削除。
-    local bar_right_without_path="${prompt_bar_right:s/%d//}"
+#    local bar_right_without_path="${prompt_bar_right:s/%d//}"
     # 「%d」を抜いた文字数を計算する。
-    local bar_right_without_path_length=$(count_prompt_characters "$bar_right_without_path")
+#    local bar_right_without_path_length=$(count_prompt_characters "$bar_right_without_path")
     # パスの最大長を計算する。
     #   $[...]: 「...」を算術演算した結果で展開する。
-    local max_path_length=$[bar_rest_length - bar_right_without_path_length]
+#    local max_path_length=$[bar_rest_length - bar_right_without_path_length]
     # パスに展開される「%d」に最大文字数制限をつける。
     #   %d -> %(C,%${max_path_length}<...<%d%<<,)
     #     %(x,true-text,false-text):
@@ -189,42 +191,52 @@ update_prompt()
     #          「%d」が「${max_path_length}」カラムより長かったら、
     #          長い分を削除して「...」にする。最終的に「...」も含めて
     #          「${max_path_length}」カラムより長くなることはない。
-    bar_right=${prompt_bar_right:s/%d/%(C,%${max_path_length}<...<%d%<<,)/}
+#    bar_right=${prompt_bar_right:s/%d/%(C,%${max_path_length}<...<%d%<<,)/}
     # 「${bar_rest_length}」文字分の「-」を作っている。
     # どうせ後で切り詰めるので十分に長い文字列を作っているだけ。
     # 文字数はざっくり。
-    local separator="${(l:${bar_rest_length}::-:)}"
+#    local separator="${(l:${bar_rest_length}::-:)}"
     # プロンプトバー全体を「${bar_rest_length}」カラム分にする。
     #   %${bar_rest_length}<<...%<<:
     #     「...」を最大で「${bar_rest_length}」カラムにする。
-    bar_right="%${bar_rest_length}<<${separator}${bar_right}%<<"
+#    bar_right="%${bar_rest_length}<<${separator}${bar_right}%<<"
 
     # プロンプトバーと左プロンプトを設定
     #   "${bar_left}${bar_right}": プロンプトバー
     #   $'\n': 改行
     #   "${prompt_left}": 2行目左のプロンプト
-    PROMPT="${bar_left}${bar_right}"$'\n'"${prompt_left}"
+#    PROMPT="${bar_left}${bar_right}"$'\n'"${prompt_left}"
     # 右プロンプト
     #   %{%B%F{white}%K{green}}...%{%k%f%b%}:
     #       「...」を太字で緑背景の白文字にする。
     #   %~: カレントディレクトリのフルパス（可能なら「~」で省略する）
-    RPROMPT="[%{%B%F{white}%K{magenta}%}%~%{%k%f%b%}]"
-    case "$TERM_PROGRAM" in
-	Apple_Terminal)
-	    # Mac OS Xのターミナルでは$COLUMNSに右余白が含まれていないので
-	    # 右プロンプトに「-」を追加して調整。
-	    ## 2011-09-05
-	    RPROMPT="${RPROMPT}-"
-	    ;;
-    esac
+#    RPROMPT="[%{%B%F{white}%K{magenta}%}%~%{%k%f%b%}]"
+#    case "$TERM_PROGRAM" in
+#    Apple_Terminal)
+         # Mac OS Xのターミナルでは$COLUMNSに右余白が含まれていないので
+	     # 右プロンプトに「-」を追加して調整。
+	         ## 2011-09-05
+#		     RPROMPT="${RPROMPT}-"
+#		         ;;
+#    esac
 
     # バージョン管理システムの情報を取得する。
-    LANG=C vcs_info >&/dev/null
+#    LANG=C vcs_info >&/dev/null
     # バージョン管理システムの情報があったら右プロンプトに表示する。
-    if [ -n "$vcs_info_msg_0_" ]; then
-	RPROMPT="${vcs_info_msg_0_}-${RPROMPT}"
-    fi
-}
+#    if [ -n "$vcs_info_msg_0_" ]; then
+#    RPROMPT="${vcs_info_msg_0_}-${RPROMPT}"
+#    fi
+#}
+#
+#
+#
+#
+###無効化ここまで###
+
+
+
+
+
 
 ## コマンド実行前に呼び出されるフック。
 precmd_functions=($precmd_functions update_prompt)
@@ -234,6 +246,21 @@ precmd_functions=($precmd_functions update_prompt)
 ## 初期化
 autoload -U compinit
 compinit
+
+
+#先方予測補完
+autoload predict-on
+predict-on
+
+# コマンド履歴検索機能
+# http://news.mynavi.jp/column/zsh/004/index.html
+# historical backward/forward search with linehead string binded to ^P/^N
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^P" history-beginning-search-backward-end
+bindkey "^N" history-beginning-search-forward-end
+
 
 ## 補完方法毎にグループ化する。
 ### 補完方法の表示方法
@@ -272,7 +299,7 @@ zstyle ':completion:*' verbose yes
 ## sudo時にはsudo用のパスも使う。
 ##zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-			     /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+       			      		        /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 ## カーソル位置で補完する。
 setopt complete_in_word
 ## globを展開しないで候補の一覧から補完する。
@@ -346,32 +373,54 @@ alias mv="mv -i"
 alias pd="pushd"
 alias po="popd"
 
+
+# OS 別の設定
+# updateやupgradeを1発で行う(たいへんきけん)
+case ${OSTYPE} in
+    ubuntu*)
+        #ubuntu用の設定(check無)
+        alias upugy=sudo apt-get update;sudo apt-get dist-upgrade -y
+        #ubuntu用の設定(check入)
+        alias upug=sudo apt-get update;sudo apt-get dist-upgrade
+        ;;
+    gentoo*)
+        #gentoo用の設定(check入)
+        alias worldc=emerge --sync;emerge -uDNpv
+        #gentoo用の設定(check無)
+        alias world=emerge --sync;emerge -uDN world
+        ;;
+esac
+
+
+
+
+
 ## lsとpsの設定
 ### ls: できるだけGNU lsを使う。
 ### ps: 自分関連のプロセスのみ表示。
 case $(uname) in
     *BSD|Darwin)
-	if [ -x "$(which gnuls)" ]; then
-	    alias ls="gnuls"
+    if [ -x "$(which gnuls)" ]; then
+        alias ls="gnuls"
 	    alias la="ls -lhAF --color=auto"
-	else
-	    alias la="ls -lhAFG"
-	fi
-	alias ps="ps -fU$(whoami)"
-	;;
+	    else
+	        alias la="ls -lhAFG"
+		fi
+		alias ps="ps -fU$(whoami)"
+		;;
     SunOS)
-	if [ -x "`which gls`" ]; then
-	    alias ls="gls"
+    if [ -x "`which gls`" ]; then
+        alias ls="gls"
 	    alias la="ls -lhAF --color=auto"
-	else
-	    alias la="ls -lhAF"
-	fi
-	alias ps="ps -fl -u$(/usr/xpg4/bin/id -un)"
-	;;
+	    else
+	        alias la="ls -lhAF"
+		fi
+		alias ps="ps -fl -u$(/usr/xpg4/bin/id -un)"
+		;;
     *)
-	alias la="ls -lhAF --color=auto"
-	alias ps="ps -fU$(whoami) --forest"
-	;;
+    alias la="ls -lhAF --color=auto"
+    alias ps="ps -fU$(whoami) --forest"
+    ;;
 esac
 
 ## Emacsのショートカット。
@@ -410,9 +459,9 @@ update_title() {
     command_line=${(z)2}
     local command=
     if [ ${(t)command_line} = "array-local" ]; then
-	command="$command_line[1]"
+    command="$command_line[1]"
     else
-	command="$2"
+    command="$2"
     fi
     print -n -P "\e]2;"
     echo -n "(${command})"
