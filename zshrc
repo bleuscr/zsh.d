@@ -378,24 +378,29 @@ alias po="popd"
 # google-chromeの起動オプション
 alias chrome='google-chrome --disk-cache-dir="/ramdisk" --disk-cache-size=1 --media-cache-size=1 --disable-geolocation --enable-click-to-play --purge-memory-button --disable-background-mode'
 
+# updateやupgradeを1発で行う(たいへんきけん)
+alias upugy=sudo apt-get update;sudo apt-get dist-upgrade -y
+alias upug=sudo apt-get update;sudo apt-get dist-upgrade
+
+###うまくいかないのでもう少し調べてから
 # OS 別の設定
 # updateやupgradeを1発で行う(たいへんきけん)
-case ${OSTYPE} in
+#case ${OSTYPE} in
     #ubuntu*)
-    linux*)
+#    linux*)
         #ubuntu用の設定(check無)
-        alias upugy=sudo apt-get update;sudo apt-get dist-upgrade -y
+#        alias upugy=sudo apt-get update;sudo apt-get dist-upgrade -y
         #ubuntu用の設定(check入)
-        alias upug=sudo apt-get update;sudo apt-get dist-upgrade
-        ;;
+#        alias upug=sudo apt-get update;sudo apt-get dist-upgrade
+#        ;;
         
     #gentoo*)
         #gentoo用の設定(check入)
     #   alias worldc=emerge --sync;emerge -uDNpv
         #gentoo用の設定(check無)
     #   alias world=emerge --sync;emerge -uDN world
-        ;;
-esac
+#        ;;
+#esac
 
 
 
