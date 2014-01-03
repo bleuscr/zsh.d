@@ -381,17 +381,19 @@ alias chrome='google-chrome --disk-cache-dir="/ramdisk" --disk-cache-size=1 --me
 # OS 別の設定
 # updateやupgradeを1発で行う(たいへんきけん)
 case ${OSTYPE} in
-    ubuntu*)
+    #ubuntu*)
+    linux*)
         #ubuntu用の設定(check無)
         alias upugy=sudo apt-get update;sudo apt-get dist-upgrade -y
         #ubuntu用の設定(check入)
         alias upug=sudo apt-get update;sudo apt-get dist-upgrade
         ;;
-    gentoo*)
+        
+    #gentoo*)
         #gentoo用の設定(check入)
-        alias worldc=emerge --sync;emerge -uDNpv
+    #   alias worldc=emerge --sync;emerge -uDNpv
         #gentoo用の設定(check無)
-        alias world=emerge --sync;emerge -uDN world
+    #   alias world=emerge --sync;emerge -uDN world
         ;;
 esac
 
