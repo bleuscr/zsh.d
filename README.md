@@ -2,9 +2,19 @@
 
 # Zshのオススメ設定集 #
 
-## 使い方 ##
-
-	% git clone https://github.com/clear-code/zsh.d.git ~/.zsh.d
+## 使い方(ubuntuの場合) ##
+	$ echo $SHELL
+	$ sudo apt-get update;sudo apt-get install zsh
+	$ cat /etc/passwd|tail -3
+	$ chsh -s /usr/bin/zsh
+	$ sudo mkdir /ramdisk
+	$ sudo chmod 777 /ramdisk
+	$ sudo echo /dev/shm /ramdisk	tmpfs	size=8g	0	0 >> /etc/fstab
+	$ sudo reboot
+	% echo $SHELL
+	% cat /etc/passwd|tail -3
+	% cat /etc/mtab
+	% git clone https://github.com/efr700/zsh.d.git ~/.zsh.d
 	% echo "source ~/.zsh.d/zshrc" > ~/.zshrc
 	% echo "source ~/.zsh.d/zshenv" > ~/.zshenv
 
