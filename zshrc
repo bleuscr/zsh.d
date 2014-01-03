@@ -379,8 +379,8 @@ alias po="popd"
 alias chrome='google-chrome --disk-cache-dir="/ramdisk" --disk-cache-size=1 --media-cache-size=1 --disable-geolocation --enable-click-to-play --purge-memory-button --disable-background-mode'
 
 # updateやupgradeを1発で行う(たいへんきけん)
-alias upugy=sudo apt-get update;sudo apt-get dist-upgrade -y
-alias upug=sudo apt-get update;sudo apt-get dist-upgrade
+alias upugy="sudo apt-get update;sudo apt-get dist-upgrade -y"
+alias upug="sudo apt-get update;sudo apt-get dist-upgrade"
 
 ###うまくいかないのでもう少し調べてから
 # OS 別の設定
