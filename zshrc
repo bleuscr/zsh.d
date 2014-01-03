@@ -249,8 +249,9 @@ compinit
 
 
 #先方予測補完
-autoload predict-on
-predict-on
+# 入力の邪魔なので無効に
+#autoload predict-on
+#predict-on
 
 # コマンド履歴検索機能
 # http://news.mynavi.jp/column/zsh/004/index.html
