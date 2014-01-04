@@ -298,8 +298,8 @@ zstyle ':completion:*' use-cache yes
 ## 詳細な情報を使う。
 zstyle ':completion:*' verbose yes
 ## sudo時にはsudo用のパスも使う。
-##zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
+##zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 
 
 ## カーソル位置で補完する。
