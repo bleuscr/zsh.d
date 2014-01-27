@@ -14,7 +14,7 @@
 	% echo $SHELL
 	% cat /etc/passwd|tail -3
 	% cat /etc/mtab
-	% git clone https://github.com/efr700/zsh.d.git ~/.zsh.d
+	% git clone https://github.com/neplus/zsh.d.git ~/.zsh.d
 	% echo "source ~/.zsh.d/zshrc" > ~/.zshrc
 	% echo "source ~/.zsh.d/zshenv" > ~/.zshenv
 
